@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
-
+<%= form_tag textbooks_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :query, params[:query],class: "form-control mr-sm-2" %> 
+    <%= submit_tag "Search!" ,class: "btn btn-outline-info my-2 my-sm-0"%>
+    <% end %>
 <h1>Textbooks</h1>
 
 <table>

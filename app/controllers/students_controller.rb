@@ -5,8 +5,14 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
     @students = Student.all
+    @search = Student.search do
+    keywords params[:query] ,:fields => [:first_name,:last_name,:admission_number,:department ]
+    fulltext params[:query] , highlight: true
+    keywords params[:query] , highlight: true
+    fulltext params[:query] ,:fields => [:first_name,:last_name,:admission_number,:department ] 
+    end
+    @students = @search.results
   end
-
   # GET /students/1
   # GET /students/1.json
   def show

@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
-
+<%= form_tag students_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :query, params[:query],class: "form-control mr-sm-2" %> 
+    <%= submit_tag "Search!" ,class: "btn btn-outline-info my-2 my-sm-0"%>
+    <% end %>
 <h1>Students</h1>
 
 <table>
@@ -41,4 +45,3 @@
 <br>
 
 <%= link_to 'New Student', new_student_path %>
-<a data-toggle="tab" href="http://localhost:3000/">Home</a></li>

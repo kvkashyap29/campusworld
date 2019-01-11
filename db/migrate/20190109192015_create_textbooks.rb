@@ -1,10 +1,10 @@
 class CreateTextbooks < ActiveRecord::Migration[5.2]
   def change
     create_table :textbooks do |t|
-      t.string :name
-      t.string :image
-      t.string :author
-      t.string :publications
+      t.text :name
+      t.text :image
+      t.text :author
+      t.text :publications
 
       t.timestamps
     end

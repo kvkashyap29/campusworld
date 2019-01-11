@@ -16,7 +16,8 @@
         <div class='tab-content'>
           <div id='info' class='tab-pane fade in active'>
             <div class='col-sm-8'>
-              <h3>Search student</h3>
-              <input type='text' placeholder='Enter student name' class='form-control'>
+              <h3>Search</h3>
+             <%= text_field_tag :query, params[:query],class: "form-control mr-sm-2" %> 
+    <%= submit_tag "Search!" ,class: "btn btn-outline-info my-2 my-sm-0"%>
             </div>
      

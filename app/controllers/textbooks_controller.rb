@@ -5,6 +5,13 @@ class TextbooksController < ApplicationController
   # GET /textbooks.json
   def index
     @textbooks = Textbook.all
+     @search = Textbook.search do
+    keywords params[:query] ,:fields => [:name,:author,:publications]
+    fulltext params[:query] , highlight: true
+    keywords params[:query] , highlight: true
+    fulltext params[:query] ,:fields => [:name,:author,:publications] 
+    end
+    @textbooks = @search.results
   end
 
   # GET /textbooks/1
