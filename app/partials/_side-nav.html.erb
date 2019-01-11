@@ -1,0 +1,66 @@
+<%- if user_signed_in? %>
+  <div class='row sticky'>
+    <div class='col-sm-3'>
+      <div class='side-nav'>
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a data-toggle="tab" href="#student">Students</a></li>
+          <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+          <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+          <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+          <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+          <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+          <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+          <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+          <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+          <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+          <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+          <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+          <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class='col-sm-9'>
+      <div class="tab-content">
+        <!-- Student profile -->
+        <div id="student" class="tab-pane fade in active">
+          <!-- NAV TABS -->
+          <ul class="nav nav-tabs">
+            <li  class="active"><a href="#info">General Information</a></li>
+            <li><a href="#issues">Student Issues</a></li>
+            <li><a href="#misc">Miscellaneous</a></li>
+          </ul>
+          <!-- Tab Panes -->
+          <div class='tab-content'>
+            <div id='info' class='tab-pane fade in active'>
+              <h3>About student</h3>
+            </div>
+            <div id='issues' class="tab-pane fade">
+              <h3>Search for issues </h3>
+              <form>
+                <div class='form-group'>
+                <input type='text' placeholder='search student issues' class='form-control'>
+                </div>
+              </form>
+              <p>Any complaints raised by the student</p>
+              <p>Allow for creation of new issues </p>
+            </div>
+            <div id='misc' class="tab-pane fade">
+              <p>Anything else about the student</p>
+            </div>
+          </div>
+          <div>
+          </div>
+        </div>
+        <!-- END of Students -->
+        <div id="menu1" class="tab-pane fade">
+          <h3>Menu 1</h3>
+          <p>Some content in menu 1.</p>
+        </div>
+        <div id="menu2" class="tab-pane fade">
+          <h3>Menu 2</h3>
+          <p>Some content in menu 2.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

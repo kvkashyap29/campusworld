@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Students</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Admission number</th>
+      <th>Department</th>
+      <th>Year of admission</th>
+      <th>Year of completion</th>
+      <th>Gender</th>
+      <th>Dob</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.first_name %></td>
+        <td><%= student.last_name %></td>
+        <td><%= student.admission_number %></td>
+        <td><%= student.department %></td>
+        <td><%= student.year_of_admission %></td>
+        <td><%= student.year_of_completion %></td>
+        <td><%= student.gender %></td>
+        <td><%= student.DOB %></td>
+        <td><%= student.Image %></td>
+        <td><%= link_to 'Show', student %></td>
+        <td><%= link_to 'Edit', edit_student_path(student) %></td>
+        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Student', new_student_path %>
+<a data-toggle="tab" href="http://localhost:3000/">Home</a></li>

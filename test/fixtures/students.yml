@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  admission_number: MyString
+  department: MyString
+  year_of_admission: MyString
+  year_of_completion: MyString
+  gender: MyString
+  DOB: 2019-01-10
+  Image: MyString
+
+two:
+  first_name: MyString
+  last_name: MyString
+  admission_number: MyString
+  department: MyString
+  year_of_admission: MyString
+  year_of_completion: MyString
+  gender: MyString
+  DOB: 2019-01-10
+  Image: MyString

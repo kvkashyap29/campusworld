@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @textbook.name %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @textbook.image %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @textbook.author %>
+</p>
+
+<p>
+  <strong>Publications:</strong>
+  <%= @textbook.publications %>
+</p>
+
+<%= link_to 'Edit', edit_textbook_path(@textbook) %> |
+<%= link_to 'Back', textbooks_path %>
