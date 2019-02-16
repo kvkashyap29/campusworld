@@ -5,13 +5,18 @@ class TextbooksController < ApplicationController
   # GET /textbooks.json
   def index
     @textbooks = Textbook.all
+    @textbookss =@textbooks.page(params[:page]).per(5)
      @search = Textbook.search do
     keywords params[:query] ,:fields => [:name,:author,:publications]
     fulltext params[:query] , highlight: true
     keywords params[:query] , highlight: true
     fulltext params[:query] ,:fields => [:name,:author,:publications] 
+    paginate(:page => params[:page] || 1, :per_page => 5)
+    facet :publ
+    with(:publ, params[:publications]) if params[:publications].present?
     end
-    @textbooks = @search.results
+    @textbooks,@tet = @search.results,@search.results
+    @total=@search.total
   end
 
   # GET /textbooks/1
@@ -76,6 +81,6 @@ class TextbooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def textbook_params
-      params.require(:textbook).permit(:name, :image, :author, :publications)
+      params.require(:textbook).permit(:name, :image, :author, :publications,:dlink)
     end
 end

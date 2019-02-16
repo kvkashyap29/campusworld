@@ -1,0 +1,14 @@
+current directory: C:/Users/kashyap/Desktop/sairam/campusworld-master/nclude-dependencies/gems/nio4r-2.3.1/ext/nio4r
+C:/Ruby24-x64/bin/ruby.exe -r ./siteconf20190111-7180-bk21zb.rb extconf.rb
+
+current directory: C:/Users/kashyap/Desktop/sairam/campusworld-master/nclude-dependencies/gems/nio4r-2.3.1/ext/nio4r
+make "DESTDIR=" clean
+make: *** No rule to make target 'clean'.  Stop.
+
+current directory: C:/Users/kashyap/Desktop/sairam/campusworld-master/nclude-dependencies/gems/nio4r-2.3.1/ext/nio4r
+make "DESTDIR="
+make: Nothing to be done for 'all'.
+
+current directory: C:/Users/kashyap/Desktop/sairam/campusworld-master/nclude-dependencies/gems/nio4r-2.3.1/ext/nio4r
+make "DESTDIR=" install
+make: Nothing to be done for 'install'.

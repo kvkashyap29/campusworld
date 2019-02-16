@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">SIMS</a>
+      <a class="navbar-brand" href="/">CAMPUSWORLD</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -28,6 +28,9 @@
         <% else %>
         <li class='nav-item'><%= link_to 'Log in', new_user_session_path %></li>
         <li class='nav-item'><%= link_to 'Sign up', new_user_registration_path %></li>
+         <li class='nav-item'><%= link_to 'Home',home%></li>
+        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="#">Contact</a>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->

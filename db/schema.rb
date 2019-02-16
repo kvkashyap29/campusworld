@@ -10,12 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_10_050314) do
+ActiveRecord::Schema.define(version: 2019_02_07_145403) do
 
   create_table "attendences", force: :cascade do |t|
     t.string "status"
     t.date "date"
     t.string "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "post_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.date "published_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -35,10 +50,11 @@ ActiveRecord::Schema.define(version: 2019_01_10_050314) do
   end
 
   create_table "textbooks", force: :cascade do |t|
-    t.string "name"
-    t.string "image"
-    t.string "author"
-    t.string "publications"
+    t.text "name"
+    t.text "image"
+    t.text "author"
+    t.text "publications"
+    t.text "dlink"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,5 +70,20 @@ ActiveRecord::Schema.define(version: 2019_01_10_050314) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+create_table :security_questions do |t|
+  t.string :locale, null: false
+  t.string :name, null: false
+end
 
+SecurityQuestion.create! locale: :de, name: 'what\'s your mother\'s surname?'
+SecurityQuestion.create! locale: :de, name: 'Where were you born?'
+SecurityQuestion.create! locale: :de, name: 'your pet\'s name?'
+SecurityQuestion.create! locale: :de, name: 'where were you born?'
+
+create_table :the_resources do |t|
+  # other devise fields
+
+  t.integer :security_question_id
+  t.string :security_question_answer
+end
 end

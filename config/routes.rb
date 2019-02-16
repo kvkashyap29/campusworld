@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
+
+  resources :comments
+  resources :posts
   devise_for :user
   devise_scope :user do
+
     authenticated :user do
-      root 'welcome#index', as: :authenticated_root
+      root 'home#index', as: :authenticated_root
+      resources 'attendences' do
+      post 'attendences/new' => "attendences#create"
+    end
       resources 'students' do
         get 'new'
         post 'new'
@@ -10,11 +17,21 @@ Rails.application.routes.draw do
         get 'index'
         
       end
-      resources :attendences
-  resources :textbooks
+ resources :textbooks
   resources :students
+  resources :posts   
   end
     get 'user/sign_out' => "devise/sessions#destroy"
+    post 'attendences/new' => "attendences#create"
+    unauthenticated do
+      root 'home#index', as: :unauthenticated_root
+      get '/gallery'=> "home#gallery"
+      get '/about'=> "home#about"
+      get '/contact'=> "home#contact"
+      resources :posts do
+'posts#index'
+end
+    end
 end
   
   

@@ -4,13 +4,155 @@
     <title>CampusWorld</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+<style>
+  body {
+    font: 400 15px/1.8 Lato, sans-serif;
+    color: #777;
+  }
+  h3, h4 {
+    margin: 10px 0 30px 0;
+    letter-spacing: 2px;      
+    font-size: 20px;
+    color: #111;
+  }
+  .container {
+    padding: 80px 120px;
+  }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+  }
+  .person:hover {
+    border-color: #f1f1f1;
+  }
+  .carousel-inner img {
+    -webkit-filter: grayscale(90%);
+    filter: grayscale(90%); /* make all photos black and white */ 
+    width: 100%; /* Set width to 100% */
+    margin: auto;
+  }
+  .carousel-caption h3 {
+    color: #fff !important;
+  }
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+    }
+  }
+  .bg-1 {
+    background: #2d2d30;
+    color: #bdbdbd;
+  }
+  .bg-1 h3 {color: #fff;}
+  .bg-1 p {font-style: italic;}
+  .list-group-item:first-child {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+  .list-group-item:last-child {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .thumbnail {
+    padding: 0 0 15px 0;
+    border: none;
+    border-radius: 0;
+  }
+  .thumbnail p {
+    margin-top: 15px;
+    color: #555;
+  }
+  .btn {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #f1f1f1;
+    border-radius: 0;
+    transition: .2s;
+  }
+  .btn:hover, .btn:focus {
+    border: 1px solid #333;
+    background-color: #fff;
+    color: #000;
+  }
+  .modal-header, h4, .close {
+    background-color: #333;
+    color: #fff !important;
+    text-align: center;
+    font-size: 30px;
+  }
+  .modal-header, .modal-body {
+    padding: 40px 50px;
+  }
+  .nav-tabs li a {
+    color: #777;
+  }
+  #googleMap {
+    width: 100%;
+    height: 400px;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+  }  
+  .navbar {
+    font-family: Montserrat, sans-serif;
+    margin-bottom: 0;
+    background-color: #2d2d30;
+    border: 0;
+    font-size: 11px !important;
+    letter-spacing: 4px;
+    opacity: 0.9;
+  }
+  .navbar li a, .navbar .navbar-brand { 
+    color: #d5d5d5 !important;
+  }
+  .navbar-nav li a:hover {
+    color: #fff !important;
+  }
+  .navbar-nav li.active a {
+    color: #fff !important;
+    background-color: #29292c !important;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: transparent;
+  }
+  .open .dropdown-toggle {
+    color: #fff;
+    background-color: #555 !important;
+  }
+  .dropdown-menu li a {
+    color: #000 !important;
+  }
+  .dropdown-menu li a:hover {
+    background-color: red !important;
+  }
+  footer {
+    background-color: #2d2d30;
+    color: #f5f5f5;
+    padding: 32px;
+  }
+  footer a {
+    color: #f5f5f5;
+  }
+  footer a:hover {
+    color: #777;
+    text-decoration: none;
+  }  
+  .form-control {
+    border-radius: 0;
+  }
+  textarea {
+    resize: none;
+  }
+  </style>
   </head>
   <body>
   	 <%= javascript_include_tag 'application' %>
 <%= stylesheet_link_tag 'application', media: 'all' %>
-  	<nav class="navbar navbar-default">
-  <div class="container-fluid">
+  	<nav class="navbar navbar-inverse bg-inverse">
+
+
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -37,14 +179,282 @@
           </a>
         </li>
         <% else %>
-        <li class='nav-item'><%= link_to 'Log in', new_user_session_path %></li>
+        <ul class="nav nav-pills">
+  <li class="nav-item">
+ <li class="nav-link active"><%= link_to 'Home', authenticated_root_path %></li>
+  </li>
+  
+      <li class='nav-item'><%= link_to 'Alumnai', posts_path %></li>
+        <li class='nav-item'><a class="nav-link" href="/about">About Us</a>
+        <li class='nav-item'><a class="nav-link" href="/contact">Contact</a>
+          <li class='nav-item'><a class="nav-link" href="/gallery">Gallery</a>
+  </li>
+   <li class='nav-item'><%= link_to 'Log in', new_user_session_path %></li>
         <li class='nav-item'><%= link_to 'Sign up', new_user_registration_path %></li>
+
+</ul>
+      
+       
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+ <%= yield %>
+<div id="band" class="container text-center">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
+   
+<footer class="text-center">
+  <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <section class="footer py-5">
+  <div class="footer-top py-lg-3">
+    <div class="container">
+      <div class="row footer-grids">
+        <div class="col-lg-4 col-md-6 footer-grid text-left">
+          <div class="footer-logo">
+            <h3 class="mb-3"><a class="logo" href="index.html">Campus World</a></h3>
+            <p>Campus World is an interactive E-student web portal which has an inbuilt text search engine capable of performing partial and full keyword search, Easy navigation and resource sharing. </p>
+            <ul class="social mt-lg-0 mt-3">
+          <li class="mr-1"><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+          <li class="mx-1"><a href="#"><span class="fab fa-twitter"></span></a></li>
+          <li class="mx-1"><a href="#"><span class="fab fa-google-plus-g"></span></a></li>
+          <li class="mx-1"><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
+          
+        </ul>
+          </div>
+        </div>
+                <div class="col-lg-2 col-md-6 col-sm-5 mt-lg-0 mt-sm-5 mt-4 footer-grid links text-left">
+          <h3 class="mb-4"> links </h3>
+          <ul>
+            <li>
+              <%= link_to 'Home', authenticated_root_path %>
+            </li>
+            <li>
+           
+          <li class='nav-item'><a class="nav-link" href="/gallery">Gallery</a>
+            </li>
+            <li>
+              
+        <li class='nav-item'><a class="nav-link" href="/contact">Contact</a>
+            </li>
+            <li>
+             
+        <li class='nav-item'><a class="nav-link" href="/about">About Us</a>
+            </li>
+            <li>
+             <a><%= link_to 'Alumnai', posts_path %></a>
+            </li>
+          </ul>
+        </div>
+                <div class="col-lg-3 col-md-6 col-sm-7 mt-lg-0 mt-sm-5 mt-4 footer-grid links text-left">
+          <h3 class="mb-4">contact Us </h3>
+          <ul>
+            <li><strong>Address</strong> : GUDLAVALLERU ENGINEERING COLLEGE, Gudlavalleru, Andhra Pradesh 521356</li>
+            <li><strong>mobile</strong> : 08674-273737</li>
+            <li><strong>phone</strong> : 08674-273737</li>
+            <li><strong>Mail</strong> : <a href="mailto:info@gecgudlavalleru.ac.in"> info@gecgudlavalleru.ac.in </a></li>
+          </ul>
+        </div>
 
-    <%= yield %>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- //footer -->
+
+<!-- copyright -->
+<div class="copy_right py-4 text-center">
+    <p>© 2019 Campus World. All rights reserved.</p>
+  
+</div>
+ 
+</footer>
+
   </body>
 </html>
+<script type="text/javascript">$('#myTab a').on('click', function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+$('#myTab a[href="#profile"]').tab('show') // Select tab by name
+$('#myTab li:first-child a').tab('show') // Select first tab
+$('#myTab li:last-child a').tab('show') // Select last tab
+$('#myTab li:nth-child(3) a').tab('show') // Select third tab
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+  e.target // newly activated tab
+  e.relatedTarget // previous active tab
+})</script>
+<style type="text/css">
+  /*-- footer --*/
+.footer {
+    background: #181818;
+}
+.footer-grid h3, .footer-list h3, .edu-footer-grid h3 {
+    font-size: 24px;
+    color: #FFFFFF;
+    text-transform: capitalize;
+    line-height: 1.5em;
+    letter-spacing: 2px;
+}
+.footer-grid p {
+    color: #bbbbbb;
+    font-size: 14px;
+    line-height: 1.8em;
+    letter-spacing: 1px;
+}
+.footer-grid ul, .footer-list ul {
+    padding: 0;
+    margin: 0;
+}
+.footer-grid ul li, .footer-list ul li {
+    display: block;
+    margin: .4em 0 0;
+}
+.footer-logo li {
+    display: inline-block !important;
+}
+.footer-logo ul li a {
+    color: #bbb;
+    font-size: 1.2em;
+    text-decoration: none;
+    padding-right: 5px;
+}
+.footer-list ul li {
+    color: #bbb;
+    font-size: 1em;
+}
+.footer-grid ul li {
+    color: #bbb;
+     font-size: 14px;
+    text-decoration: none;
+    line-height: 2em;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-family: 'Open Sans', sans-serif;
+}
+.footer-grid strong {
+    text-decoration: underline;
+     color: #eee;
+}
+.footer-grid ul li a  {
+    color: #bbb;
+    font-size: 1em;
+}
+.footer-grid ul li a:hover{
+    color: #00d1b2;
+}
+.footer-grid ul li i:hover{
+    color: #00BCD4;
+  border: 1px solid #00BCD4;
+  transition:0.5s all;
+  -webkit-transition:0.5s all;
+  -moz-transition:0.5s all;
+  -o-transition:0.5s all;
+  -ms-transition:0.5s all;
+}
+.edu-footer-grid ul {
+    padding: 0;
+    margin: 0;
+}
+.edu-footer-grid input[type="email"],.edu-footer-grid input[type="text"]{
+  outline:none;
+    padding: 11px 15px;
+  background:#fff;
+  border:none;
+  font-size:14px;
+  color:#212121;
+    margin-bottom: 1em;
+  width:100%;
+    border-bottom: 1px solid #ccc;
+     border-radius: 3px;
+}
+.edu-footer-grid input[type="submit"] {
+    outline: none;
+    padding: 11px 15px;
+    border: none;
+    font-size: 14px;
+    color: #fff;
+    border: 1px solid #fff;
+    width: 100%;
+    text-align: left;
+    background-color: transparent;
+    letter-spacing: 2px;
+    text-align: center;
+     border-radius: 3px;
+    cursor:pointer;
+}
+.edu-footer-grid input[type="submit"]:hover{
+    background: #ec1c24;
+    border: 1px solid #ec1c24;
+}
+.footer-logo a {
+    color: #FFFFFF;
+    font-weight: 600;
+    text-decoration: none;
+     font-size: 1.4em;
+    text-transform: capitalize;
+}
+.footer-logo h3 span {
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    text-align: center;
+    display: block;
+  position: relative;
+}
+.footer-logo h3 span:after{
+    position: absolute;
+    content: '';
+    height: 2px;
+    width: 40px;
+    background: #fff;
+    bottom: 47%;
+    right: 18%;
+}
+.footer-logo h3 span:before{
+    position: absolute;
+    content: '';
+    height: 2px;
+    width: 40px;
+    background: #fff;
+    bottom: 47%;
+    left: 18%;
+}
+.copy_right {
+    background: #161616;
+}
+.copy_right p {
+    text-align: center;
+    color: #c1c1c1;
+    font-size: 14px;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+}
+.copy_right a {
+    color: #fff;
+}
+.copy_right a:hover {
+    color: #00BCD4;
+}
+.copy_right {
+    background: #1f1e1e;
+}
+.footer-grid ul.social li a span {
+    color: #777;
+    font-size: 13px;
+    background: #333;
+    width: 37px;
+    height: 37px;
+    line-height: 37px;
+    text-align: center;
+    display: block;
+    border-radius: 50%;
+}
+.footer-grid ul.social li a span:hover{
+     background: #fff;
+}
+
+</style>
+

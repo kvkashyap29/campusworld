@@ -1,5 +1,12 @@
 <p id="notice"><%= notice %></p>
-
+<div class="col-lg-3">
+          
+          <div class="list-group">
+           <img src="/<%=@student.Image%>" width = 200 height = 200 class ="img-circle">
+          <br><br>
+<button type="button" class="btn btn-secondary"> <%= link_to 'Edit', edit_student_path(@student) %> </button>
+<button type="button" class="btn btn-secondary"> <%= link_to 'Back', students_path %></button></div>
+        </div>
 <p>
   <strong>First name:</strong>
   <%= @student.first_name %>
@@ -40,10 +47,4 @@
   <%= @student.DOB %>
 </p>
 
-<p>
-  <strong>Image:</strong>
-  <%= @student.Image %>
-</p>
 
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>

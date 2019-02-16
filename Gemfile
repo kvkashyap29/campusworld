@@ -5,8 +5,22 @@ ruby '2.4.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
-
+gem 'cloudinary'
 gem 'nifty-generators'
+gem 'kaminari'
+gem 'progress_bar'
+gem "eventmachine"
+gem 'devise-security'
+group :development do
+  # Guard is a command line tool to easily handle events on file system modifications.
+  gem 'guard', '~> 2.14', '>= 2.14.1'
+end
+gem "bulma-rails", "~> 0.7.2"
+group :development do
+  # reload the browser after changes to assets/helpers/tests
+  gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
+end
+
 gem 'sunspot_rails'
 gem "font-awesome-rails"
 # Use sqlite3 as the database for Active Record

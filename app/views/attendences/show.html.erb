@@ -1,19 +1,13 @@
-<p id="notice"><%= notice %></p>
+<div class='container'>
+  <div class='col-md-6 show-page'>
+    <div class='tab-content container show-tabs'>
+      <div id='info' class='tab-pane fade in active'>
+        <h2> Attendance </h2>
+        <p>Student Name: <%= @attendance.student.first_name %></p>
+        <p>Status: <%= @attendance.status %></p>
+      </div>
+  </div>
 
-<p>
-  <strong>Status:</strong>
-  <%= @attendence.status %>
-</p>
+</div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @attendence.date %>
-</p>
 
-<p>
-  <strong>Student:</strong>
-  <%= @attendence.student_id %>
-</p>
-
-<%= link_to 'Edit', edit_attendence_path(@attendence) %> |
-<%= link_to 'Back', attendences_path %>

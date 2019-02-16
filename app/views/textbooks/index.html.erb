@@ -1,38 +1,157 @@
 <p id="notice"><%= notice %></p>
+<div class="col-sm-2 sidenav">
+  <span class="border border-dark"></span>    
 <%= form_tag textbooks_path, :method => :get do %>
-  <p>
-    <%= text_field_tag :query, params[:query],class: "form-control mr-sm-2" %> 
-    <%= submit_tag "Search!" ,class: "btn btn-outline-info my-2 my-sm-0"%>
-    <% end %>
+          <!-- Search Widget -->
+          <div class="card my-3">
+            <div class="card-body">
+              <div class="input-group">
+
+                <h4 class="card-header">Search</h4>
+            <div class="card-body">
+              <div class="input-group">
+                <%= text_field_tag :query, params[:query],class: "form-control mr-sm-2", id: "auto_complete", :autocomplete => "on" ,:placeholder => "Search for..."%>
+                <span class="input-group-btn">
+                  <%= submit_tag "Search" ,class:"btn btn-secondary btn-lg",id:"bu"%>
+                </span>
+              </div>
+            </div>
+          </div></div></div>
+          <div class="card my-3">
+            <hr size="30" noshade="black">
+            <h4 class="card-header">Categories</h4>
+            <div class="card-body">
+              <div class="row">
+                <ul class="list-unstyled mb-0">
+                    <li><div id="facets">
+  <h3><u><b>Publication</b></u></h3>
+  <hr>
+    <ul class="list-group">
+          <% for row in @search.facet(:publ).rows%>
+          
+              <li class="group" style="list-style-type: none"><input type="checkbox" class="groups" name="publications" value="<%= row.value %>" <%= params[:publications] == row.value ? "checked" : "" %>> <%= row.value %> (<%= row.count %>)<hr></li>
+          <% end %>
+
+        </ul>
+         <p id="load-more"><font size="3"><b>Load More..</b></font></p>
+    </div><hr>
+                                         </li>
+                    <li> <div id="facets"></div></li></ul></div>
+                      <% end %>
+</div></div></div></div></div></div>
+
+<div class="col-md-10">
+            
+
 <h1>Textbooks</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Image</th>
-      <th>Author</th>
-      <th>Publications</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <%= link_to 'New Textbook', new_textbook_path %>
+  <br><br>
+ 
 
-  <tbody>
-    <% @textbooks.each do |textbook| %>
-      <tr>
-        <td><%= textbook.name %></td>
-        <td><%= textbook.image %></td>
-        <td><%= textbook.author %></td>
-        <td><%= textbook.publications %></td>
-        <td><%= link_to 'Show', textbook %></td>
-        <td><%= link_to 'Edit', edit_textbook_path(textbook) %></td>
-        <td><%= link_to 'Destroy', textbook, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+        <div class="row">
+ 
 
-<%= link_to 'New Textbook', new_textbook_path %>
-<a data-toggle="tab" href="http://localhost:3000/">Home</a></li>
+          <!-- Blog Entries Column -->
+          <div class="col-md-10">
+
+            <div class="card-deck mb-3 text-center">
+            <%if params[:query].nil?%>
+           <%= paginate @textbookss %>
+           
+
+            <% if @tet.count > 0 %>
+      <h4> <%= @total %> textbooks found.</h4>
+      
+      
+
+
+
+ <% @textbooks.each do |textbook| %>
+      <div class="w3-card-4">
+         <div class="container">
+       <div class="col-lg-3 col-sm-3 portfolio-item">
+           <%=image_tag(textbook.image,:width => 200, :height => 200, :crop => :fill) %>
+            
+              <h4 class="card-title">
+                <%= link_to textbook.name, textbook %>
+                
+              </h4>
+                           <p> Author:<%= textbook.author %></p>
+              <%= textbook.publications %>
+            
+         <button type="button" class="btn btn-secondary"><%= link_to 'Edit', edit_textbook_path(textbook) %></button>
+        <button type="button" class="btn btn-secondary"><%= link_to 'Delete', textbook, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </button>
+         </div></div></div></div>
+        
+        
+     <% end %>
+        <% else %>
+            <h3>No results found.</h3>
+        <% end %>
+  <%= paginate @textbookss %>
+   
+   
+   <%else%>
+   <%= paginate @tet %>
+<% if @tet.count > 0 %>
+      <h4> <%= @total %> textbooks found.</h4>
+
+ <% @textbooks.each do |textbook| %>
+      <div class="w3-card-4">
+       <div class="col-lg-3 col-sm-3 text-center mb-2">
+           <%=image_tag(textbook.image,:width => 200, :height => 200, :crop => :fill) %>
+           
+              <h4 class="card-title">
+                <%= link_to textbook.name, textbook %>
+      </h4>          
+             <p> Author:<%= textbook.author %></p>
+              <%= textbook.publications %>
+            
+         <button type="button" class="btn btn-secondary"><%= link_to 'Edit', edit_textbook_path(textbook) %></button>
+        <button type="button" class="btn btn-secondary"><%= link_to 'Delete', textbook, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </button> 
+        
+        
+         </div></div>
+     <% end %>
+        <% else %>
+            <h3>No results found.</h3>
+        <% end %>
+</div></div></div></div>
+
+
+   <% end %></div></div></div>
+
+
+                      <script type="text/javascript">
+var $grou= $(".group").slice(0, 49).hide();
+
+$("#load-more").click(function() {
+
+
+
+     $grou.toggle(':hidden').addClass('active');
+}
+);
+$(document).ready(function(e) {
+    $(".group").click(function() {
+        if (this.checked) {
+           $("#bu").click();
+        } else {
+             $("#bu").click();}
+    });
+});
+$(document).ready(function(e) {
+    $(".grop").click(function() {
+        if (this.checked) {
+           $("#bu").click();
+        } else {
+             $("#bu").click();}
+    });
+});
+</script>
+
+

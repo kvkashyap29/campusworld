@@ -5,13 +5,22 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
     @students = Student.all
+    @studentss =@students.page(params[:page]).per(6)
     @search = Student.search do
     keywords params[:query] ,:fields => [:first_name,:last_name,:admission_number,:department ]
     fulltext params[:query] , highlight: true
     keywords params[:query] , highlight: true
     fulltext params[:query] ,:fields => [:first_name,:last_name,:admission_number,:department ] 
+    paginate(:page => params[:page] || 1, :per_page => 6)
+    facet :dept
+    with(:dept, params[:department]) if params[:department].present?
+    facet :year_admission
+    with(:year_admission, params[:year_of_admission]) if params[:year_of_admission].present?
+    facet :year_completion
+     with(:year_completion, params[:year_of_completion]) if params[:year_of_completion].present?
     end
-    @students = @search.results
+    @students,@stu = @search.results, @search.results
+    @total=@search.total
   end
   # GET /students/1
   # GET /students/1.json

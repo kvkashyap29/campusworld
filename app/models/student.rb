@@ -10,6 +10,21 @@ searchable do
     text :department,:stored => true
     time :DOB
     text :DOB,:stored => true
-
+    string :year_of_admission
+    string :year_of_completion
+    string :dept
+    string :year_admission
+    string :year_completion
    end
+has_many :attendences, dependent: :destroy
+    def dept
+  self.department
+end
+ def year_admission
+  self.year_of_admission
+end
+ def year_completion
+  self.year_of_completion
+end
+
 end
