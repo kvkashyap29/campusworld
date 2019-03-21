@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_07_145403) do
+ActiveRecord::Schema.define(version: 2019_02_17_112016) do
 
   create_table "attendences", force: :cascade do |t|
     t.string "status"
@@ -28,11 +28,17 @@ ActiveRecord::Schema.define(version: 2019_02_07_145403) do
   end
 
   create_table "posts", force: :cascade do |t|
+    t.string "status"
     t.string "name"
     t.text "content"
     t.date "published_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "security_questions", force: :cascade do |t|
+    t.string "locale", null: false
+    t.string "name", null: false
   end
 
   create_table "students", force: :cascade do |t|
@@ -59,31 +65,23 @@ ActiveRecord::Schema.define(version: 2019_02_07_145403) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "the_resources", force: :cascade do |t|
+    t.integer "security_question_id"
+    t.string "security_question_answer"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "security_question_id"
+    t.string "security_question_answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-create_table :security_questions do |t|
-  t.string :locale, null: false
-  t.string :name, null: false
-end
 
-SecurityQuestion.create! locale: :de, name: 'what\'s your mother\'s surname?'
-SecurityQuestion.create! locale: :de, name: 'Where were you born?'
-SecurityQuestion.create! locale: :de, name: 'your pet\'s name?'
-SecurityQuestion.create! locale: :de, name: 'where were you born?'
-
-create_table :the_resources do |t|
-  # other devise fields
-
-  t.integer :security_question_id
-  t.string :security_question_answer
-end
 end

@@ -172,6 +172,7 @@
         <li class='nav-item'><a  href="students">Student</a></li>
          <li class='nav-item'><a  href="attendences">Attendances</a></li>
           <li class='nav-item'><a  href="textbooks">Text Books</a></li>
+        <li class='nav-item'><a class="nav-link" href="timetable">Time-Table</a>
         <li class='nav-item'><%= link_to 'Sign Out', destroy_user_session_path, method: 'delete'%></li>
         <li class='nav-item nohref'>
           <a nohref>
@@ -181,10 +182,10 @@
         <% else %>
         <ul class="nav nav-pills">
   <li class="nav-item">
- <li class="nav-link active"><%= link_to 'Home', authenticated_root_path %></li>
+ <li class="nav-item"><%= link_to 'Home', authenticated_root_path %></li>
   </li>
   
-      <li class='nav-item'><%= link_to 'Alumnai', posts_path %></li>
+      <li class='nav-item'><%= link_to 'Alumni', posts_path %></li>
         <li class='nav-item'><a class="nav-link" href="/about">About Us</a>
         <li class='nav-item'><a class="nav-link" href="/contact">Contact</a>
           <li class='nav-item'><a class="nav-link" href="/gallery">Gallery</a>

@@ -71,8 +71,9 @@
  <% @textbooks.each do |textbook| %>
       <div class="w3-card-4">
          <div class="container">
-       <div class="col-lg-3 col-sm-3 portfolio-item">
-           <%=image_tag(textbook.image,:width => 200, :height => 200, :crop => :fill) %>
+           <div class="col-lg-5 col-sm-3 text-center mb-2">
+       <div class="jumbotron">
+           <img src="/<%=textbook.image%>" width = 200 height = 250 "> 
             
               <h4 class="card-title">
                 <%= link_to textbook.name, textbook %>
@@ -80,14 +81,14 @@
               </h4>
                            <p> Author:<%= textbook.author %></p>
               <%= textbook.publications %>
-            
+            <br>
          <button type="button" class="btn btn-secondary"><%= link_to 'Edit', edit_textbook_path(textbook) %></button>
         <button type="button" class="btn btn-secondary"><%= link_to 'Delete', textbook, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </button>
-         </div></div></div></div>
         
+        </div></div></div>
         
-     <% end %>
+     <% end %></div></div></div></div>
         <% else %>
             <h3>No results found.</h3>
         <% end %>
@@ -102,14 +103,14 @@
  <% @textbooks.each do |textbook| %>
       <div class="w3-card-4">
        <div class="col-lg-3 col-sm-3 text-center mb-2">
-           <%=image_tag(textbook.image,:width => 200, :height => 200, :crop => :fill) %>
-           
+          
+          <img src="/<%=textbook.image%>" width = 200 height = 280 "> 
               <h4 class="card-title">
                 <%= link_to textbook.name, textbook %>
       </h4>          
              <p> Author:<%= textbook.author %></p>
               <%= textbook.publications %>
-            
+            <br>
          <button type="button" class="btn btn-secondary"><%= link_to 'Edit', edit_textbook_path(textbook) %></button>
         <button type="button" class="btn btn-secondary"><%= link_to 'Delete', textbook, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </button> 

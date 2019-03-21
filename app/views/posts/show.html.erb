@@ -1,10 +1,20 @@
-<%= @post.name %>
+<p id="notice"><%= notice %></p>
 
-<%= @post.content %>
 
 <p>
-  <%= link_to "Edit", edit_post_path(@post) %> |
-  <%= link_to "Destroy", @post, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", posts_path %>
+  <strong>Name:</strong>
+  <%= @post.name %>
 </p>
 
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<p>
+  <strong>Published at:</strong>
+  <%= @post.published_at %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

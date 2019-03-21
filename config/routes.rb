@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       root 'home#index', as: :authenticated_root
       resources 'attendences' do
       post 'attendences/new' => "attendences#create"
+     
+
     end
       resources 'students' do
         get 'new'
@@ -23,13 +25,17 @@ Rails.application.routes.draw do
   end
     get 'user/sign_out' => "devise/sessions#destroy"
     post 'attendences/new' => "attendences#create"
+     get '/timetable' => "home#timetable"
+   
     unauthenticated do
       root 'home#index', as: :unauthenticated_root
       get '/gallery'=> "home#gallery"
       get '/about'=> "home#about"
-      get '/contact'=> "home#contact"
+      get '/contact' => "home#contact"
+     get '/timetable' => "homea#timetable"
       resources :posts do
 'posts#index'
+
 end
     end
 end
